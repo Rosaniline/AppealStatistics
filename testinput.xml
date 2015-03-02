@@ -1,0 +1,14 @@
+db.appealdata.insert({
+'IssueYear': '2015',
+'IssueMonth': '01',
+'IssueDay': '25',
+'Appellant': 'Arvid Johnasson',
+'Respondent': 'Said Forest',
+'ConfYear': '2015',
+'ConfMonth': '03',
+'ConfDay': '05',
+'ConfTime': '09:40',
+'Officer': 'Jim Wen',
+'InCharge': 'Delon Chen',
+'Result': 'Fine'
+})

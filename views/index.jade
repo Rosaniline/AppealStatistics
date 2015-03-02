@@ -1,5 +1,42 @@
 extends layout
 
+// jQuery, DataTables, TableTools and Editor Javascript
+link(rel="stylesheet", href="DataTables/media/js/css/jquery.dataTables.css")
+script(src="//code.jquery.com/jquery-1.11.1.min.js")
+script(src="DataTables/media/js/jquery.dataTables.js")
+
+script(src='/javascripts/newuser.js')
+
 block content
-  h1= title
-  p Welcome to #{title}
+	h1= title
+	p Welcome to #{title}
+
+	div(class='container')
+
+		div(class='row')
+
+			div(class='col-md-2')
+
+				p Column Left
+
+				
+
+			div(class='col-md-10')
+
+				//- a(class="btn btn-default" href="#" role="button") Link
+				button(id="addAppeal" class="btn btn-default" type="submit") Add
+				button(id="deleteAppeal" class="btn btn-default" type="submit") Delete
+				button(id="modifyAppeal" class="btn btn-default" type="submit") Modify
+
+				table#appealtable(class="display" cellspacing="0" width="100%")
+					thead
+						tr
+							th ID
+							th IssueDate
+							th Appellant
+							th Respondent
+							th ConfDate
+							th ConfTime
+							th Officer
+							th InCharge
+							th Result
