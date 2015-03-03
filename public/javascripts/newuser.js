@@ -48,4 +48,19 @@ $(document).ready(function() {
     } );
 
 
+    $("#addAppeal").click(function(){
+	    $("#divAdd").toggle();
+	});
+
+    $(function(){
+		$("#issueDate").datepicker({
+			dateFormat: "yy / mm / dd"
+		});
+
+		$("#confDate").datepicker({
+			dateFormat: "yy / mm / dd"
+		});
+	});
+
+
 } );

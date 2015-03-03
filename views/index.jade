@@ -1,12 +1,5 @@
 extends layout
 
-// jQuery, DataTables, TableTools and Editor Javascript
-link(rel="stylesheet", href="DataTables/media/js/css/jquery.dataTables.css")
-script(src="//code.jquery.com/jquery-1.11.1.min.js")
-script(src="DataTables/media/js/jquery.dataTables.js")
-
-script(src='/javascripts/newuser.js')
-
 block content
 	h1= title
 	p Welcome to #{title}
@@ -17,14 +10,57 @@ block content
 
 			div(class='col-md-2')
 
-				p Column Left
-
-				
+				p Column Left				
 
 			div(class='col-md-10')
 
 				//- a(class="btn btn-default" href="#" role="button") Link
 				button(id="addAppeal" class="btn btn-default" type="submit") Add
+
+				// (style="display: none;")
+				div#divAdd(class="container")
+					form(name="addAppeal", class="form-inline", method="post", action="/appeals/addappeal")
+						div(class='row')
+							div(class='col-md-3')
+								div(class="form-group")
+									label IssueDate
+									input(type="text" class="form-control" id="issueDate" name="issueDate")
+							div(class='col-md-3')
+								label Appellant
+								input(type="text" class="form-control" id="appellant" name="appellant")
+							div(class='col-md-3')
+								label Respondent
+								input(type="text" class="form-control" id="respondent" name="respondent")
+						div(class='row')
+							div(class='col-md-3')
+								label ConfDate
+								input(type="text" class="form-control" id="confDate" name="confDate")
+							div(class='col-md-3')
+								label ConfTime
+								input(type="text" class="form-control" id="confTime" name="confTime")
+							div(class='col-md-3')
+								label Officer
+								input(type="text" class="form-control" id="officer" name="officer")
+						div(class='row')
+							div(class='col-md-3')
+								label InCharge
+								input(type="text" class="form-control" id="inCharge" name="inCharge")
+
+							div(class='col-md-3')
+								label Result
+								select(class="form-control" name="Result")
+									option 1
+									option 1
+									option 1
+									option 1
+									option 1
+
+							div(class='col-md-3')
+								button(class="btn btn-default")
+									span(class='glyphicon glyphicon-plus', aria-hidden='true')
+
+
+
 				button(id="deleteAppeal" class="btn btn-default" type="submit") Delete
 				button(id="modifyAppeal" class="btn btn-default" type="submit") Modify
 
