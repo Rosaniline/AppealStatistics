@@ -8,11 +8,10 @@ block content
 
 		div(class='row')
 
-			div(class='col-md-2')
+			//- div(class='col-md-2')
+				//- p Column Left				
 
-				p Column Left				
-
-			div(class='col-md-10')
+			div(class='col-md-12')
 
 				//- a(class="btn btn-default" href="#" role="button") Link
 				button(id="addAppeal" class="btn btn-default" type="submit") Add
@@ -37,23 +36,39 @@ block content
 								input(type="text" class="form-control" id="confDate" name="confDate")
 							div(class='col-md-3')
 								label ConfTime
-								input(type="text" class="form-control" id="confTime" name="confTime")
+								input(type="time" class="form-control" id="confTime" name="confTime")
 							div(class='col-md-3')
 								label Officer
-								input(type="text" class="form-control" id="officer" name="officer")
+								select(class="form-control" name="officer")
+									option(value="Chen" selected="selected") Chen
+									option(value="Kon") Kon
+									option(value="Pan") Pan
+									option(value="Wen") Wen
+									option(value="Chen Junior") Chen Junior
+								// input(type="text" class="form-control" id="officer" name="officer")
 						div(class='row')
 							div(class='col-md-3')
 								label InCharge
-								input(type="text" class="form-control" id="inCharge" name="inCharge")
+								select(class="form-control" name="inCharge")
+									option(value="Chen" selected="selected") Chen
+									option(value="Huang") Huang
+									option(value="Hsu") Hsu
+									option(value="Cheng") Cheng
+								// input(type="text" class="form-control" id="inCharge" name="inCharge")
 
 							div(class='col-md-3')
 								label Result
-								select(class="form-control" name="Result")
-									option 1
-									option 1
-									option 1
-									option 1
-									option 1
+								select(class="form-control" name="result")
+									option(value="" selected="selected") 尚無結果
+									option(value="成立") 成立
+									option(value="雙方意見不一致") 雙方意見不一致
+									option(value="申訴人未到") 申訴人未到
+									option(value="業者未到") 業者未到
+									option(value="雙方未到") 雙方未到
+									option(value="移轉管轄") 移轉管轄
+									option(value="撤回") 撤回
+									option(value="其他") 其他
+									option(value="不受理") 不受理
 
 							div(class='col-md-3')
 								button(class="btn btn-default")
@@ -61,7 +76,7 @@ block content
 
 
 
-				button(id="deleteAppeal" class="btn btn-default" type="submit") Delete
+				button(id="deleteAppeal" class="btn btn-default" onclick="appealPostDelete()") Delete
 				button(id="modifyAppeal" class="btn btn-default" type="submit") Modify
 
 				table#appealtable(class="display" cellspacing="0" width="100%")

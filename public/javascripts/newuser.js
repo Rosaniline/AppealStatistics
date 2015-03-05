@@ -47,7 +47,6 @@ $(document).ready(function() {
         $(this).toggleClass('selected');
     } );
 
-
     $("#addAppeal").click(function(){
 	    $("#divAdd").toggle();
 	});
@@ -62,5 +61,79 @@ $(document).ready(function() {
 		});
 	});
 
-
+   
 } );
+
+
+function appealPostDelete() {
+
+
+
+
+    var selectedRow = $("#appealtable .selected td");
+	var tableAttribute = $("#appealtable th");
+
+	var tableLength = tableAttribute.length;
+	var numSelectedRow = selectedRow.length/tableLength;
+
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "/appeals/deleteappeal");
+
+    var hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "numSelectedRow");
+    hiddenField.setAttribute("value", numSelectedRow);
+    form.appendChild(hiddenField);
+
+	for (var i = 0; i < selectedRow.length; i++) {
+		
+    	var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", LowerizeFirstLetter(tableAttribute.eq(i%tableLength).text()));
+        hiddenField.setAttribute("value", selectedRow.eq(i).text());	
+
+        form.appendChild(hiddenField);
+
+	};
+
+	document.body.appendChild(form);
+	form.submit();
+	// console.log(form);
+
+	// for (var i = 0; i < numSelectedRow; i++) {
+
+	//     var form = document.createElement("form");
+	//     form.setAttribute("method", "post");
+	//     form.setAttribute("action", "/appeals/deleteappeal");
+
+	//     for (var j = i*tableLength; j < (i + 1)*tableLength; j++) {
+
+	//     	var hiddenField = document.createElement("input");
+	//         hiddenField.setAttribute("type", "hidden");
+	//         hiddenField.setAttribute("name", LowerizeFirstLetter(tableAttribute.eq(j).text()));
+	//         hiddenField.setAttribute("value", selectedRow.eq(j).text());
+
+	//         form.appendChild(hiddenField);
+	//     };
+
+	//     document.body.appendChild(form);
+	//     form.submit();
+
+	//     console.log(form);
+		
+	// };
+
+
+
+
+
+}
+
+function LowerizeFirstLetter(string) {
+    return string.charAt(0).toLowerCase() + string.slice(1);
+}
+
+
+
+

@@ -61,4 +61,98 @@ router.post('/addappeal', function(req, res) {
 
 });
 
+/* POST to Delete Appeal Service */
+router.post('/deleteappeal', function(req, res) {
+
+	console.log(req.body);
+
+    // Set our internal DB variable
+    var db = req.db;
+    var form = req.body;
+
+    if ( form.numSelectedRow > 1 ) {
+
+    	for (var i = 0; i < form.numSelectedRow; i++) {
+
+    		var issueDate = form.issueDate[i].split('/');
+	    	var confDate = form.confDate[i].split('/');
+
+	    	db.collection('appealdata').remove({
+
+				'IssueYear': issueDate[0],
+				'IssueMonth': issueDate[1],
+				'IssueDay': issueDate[2],
+				'Appellant': form.appellant[i],
+				'Respondent': form.respondent[i],
+				'ConfYear': confDate[0],
+				'ConfMonth': confDate[1],
+				'ConfDay': confDate[2],
+				'ConfTime': form.confTime[i],
+				'Officer': form.officer[i],
+				'InCharge': form.inCharge[i],
+				'Result': form.result[i]
+
+				  }, function (err, doc) {
+
+		        if (err) {
+		            // If it failed, return error
+		            res.send("There was a problem adding the information to the database.");
+		        }
+		        else {
+
+		        	console.log("Appeal removed successfully");
+		            
+		        }
+		    });
+
+	    }
+
+    	// If it worked, set the header so the address bar doesn't still say /adduser
+        res.location("/");
+        // And forward to success page
+        res.redirect("/");
+
+    }
+
+    else {
+
+    	var issueDate = form.issueDate.split('/');
+    	var confDate = form.confDate.split('/');
+
+    	db.collection('appealdata').remove({
+
+			'IssueYear': issueDate[0],
+			'IssueMonth': issueDate[1],
+			'IssueDay': issueDate[2],
+			'Appellant': form.appellant,
+			'Respondent': form.respondent,
+			'ConfYear': confDate[0],
+			'ConfMonth': confDate[1],
+			'ConfDay': confDate[2],
+			'ConfTime': form.confTime,
+			'Officer': form.officer,
+			'InCharge': form.inCharge,
+			'Result': form.result
+
+			  }, function (err, doc) {
+
+	        if (err) {
+	            // If it failed, return error
+	            res.send("There was a problem adding the information to the database.");
+	        }
+	        else {
+
+	        	console.log("Appeal removed successfully");
+	            // If it worked, set the header so the address bar doesn't still say /adduser
+	            res.location("/");
+	            // And forward to success page
+	            res.redirect("/");
+	        }
+	    });
+
+    }
+
+
+});
+
 module.exports = router;
